@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-    },
-    "strictNullChecks": true,
+    "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "importHelpers": true,
     "jsx": "react",
-    "noUnusedParameters": true,
-    "noUnusedLocals": false,
-    "noImplicitAny": true,
-    "target": "es6",
-    "lib": ["dom", "es2017"],
-    "skipLibCheck": true
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "strict": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
+    },
+    "allowSyntheticDefaultImports": true,
+    "declaration": true
   },
-  "exclude": ["node_modules", "lib", "es"]
+  "exclude": ["node_modules", "lib", "es", "dist", "typings", "**/__test__", "test"]
 }

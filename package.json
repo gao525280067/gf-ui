@@ -1,6 +1,7 @@
 {
+  "private": false,
   "name": "gf-react-ui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "一个基于React开发的组件库，包含基础组件、业务组件、区块、hooks、utils等",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -11,37 +12,30 @@
     "es"
   ],
   "scripts": {
-    "test": "father test",
-    "test:coverage": "father test --coverage",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}'",
-    "format": "eslint --fix 'src/**/*.{js,ts,tsx}'",
-    "start": "father doc dev",
-    "doc:build": "father doc build",
-    "doc:deploy": "father doc deploy",
-    "lib:build": "father build && node ./scripts/moveDeclare.js && node ./scripts/changeLess2Css.js"
+    "start": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father-build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "release": "npm run build && npm publish",
+    "alpha": "npm run build && npm publish --tag=alpha",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
   },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
-    "babel-plugin-import": "^1.13.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-plugin-flowtype": "^4.7.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^3.0.0",
-    "father": "^2.29.2",
-    "fs-extra": "^9.0.0",
-    "klaw-sync": "^6.0.0",
-    "prettier": "^2.0.2",
-    "prettier-eslint": "^9.0.1"
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "react": "^16.12.0"
   },
   "repository": {
     "type": "git",
@@ -52,6 +46,16 @@
     "ui",
     "hooks"
   ],
+  "devDependencies": {
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.0.5",
+    "dumi": "^1.0.8",
+    "father-build": "^1.17.2",
+    "gh-pages": "^3.0.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "yorkie": "^2.0.0"
+  },
   "engines": {
     "node": ">=8.0.0"
   },

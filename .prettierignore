@@ -1,5 +1,7 @@
-node_modules/*
-.docz/*
-es/*
-dist/*
-lib/*
+**/*.svg
+**/*.ejs
+**/*.html
+package.json
+.umi
+.umi-production
+.umi-test
